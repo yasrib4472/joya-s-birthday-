@@ -17,18 +17,67 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
-<!-- Play Button -->
-<button onclick="document.getElementById('bg-music').play()" style="padding:10px 20px; font-size:16px;">
-  🎵 Click to Play Music
-</button>
-
-<!-- Background Music (Hidden) -->
-<audio id="bg-music" loop hidden>
-  <source src="images/music.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
 </audio>
 </audio>
 <body>
+    <!-- 🧠 STYLE -->
+<style>
+  #music-btn {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px #4CAF50;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+    z-index: 9999;
+  }
+
+  #music-btn:hover {
+    background-color: #388E3C;
+    box-shadow: 0 0 20px #388E3C;
+  }
+
+  @keyframes pulse {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.05); }
+    100% { transform: translateX(-50%) scale(1); }
+  }
+</style>
+
+<!-- 🎵 TOGGLE BUTTON -->
+<button id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+
+<!-- 🎧 AUDIO -->
+<audio id="bg-music" loop hidden>
+  <source src="images/music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ⚙️ SCRIPT -->
+<script>
+  const music = document.getElementById('bg-music');
+  const btn = document.getElementById('music-btn');
+  let isPlaying = false;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+      btn.innerHTML = '🎵 Play Music';
+    } else {
+      music.play();
+      btn.innerHTML = '⏸️ Pause Music';
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
     <div id="wrapper">
         <div class="flag__birthday">
             <img src="./images/1.png" alt="" width="350" class="flag__left">
