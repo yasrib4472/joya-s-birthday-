@@ -21,56 +21,56 @@
 </audio>
 <body>
 
-<!-- 🧠 STYLE -->
-<style>
-  #music-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 10px 12px;
-    font-size: 20px;
-    border: none;
-    border-radius: 50%;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 10px #4CAF50;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    z-index: 9999;
-  }
+<!-- Font Awesome লিঙ্ক (HEAD এর মধ্যে) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
-  #music-btn:hover {
-    background-color: #388E3C;
-    box-shadow: 0 0 14px #388E3C;
-  }
-</style>
+<!-- বাটন -->
+<button id="music-btn" onclick="toggleMusic()" aria-label="Toggle music" style="
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 12px;
+  font-size: 20px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #4CAF50;
+  cursor: pointer;
+  box-shadow: 0 0 10px #4CAF50;
+  transition: all 0.3s ease;
+  z-index: 9999;
+">
+  <i class="fas fa-volume-mute"></i> <!-- ডিফল্ট আইকন -->
+</button>
 
-<!-- 🔊/🔇 ICON BUTTON -->
-<button id="music-btn" onclick="toggleMusic()">🔇</button>
-
-<!-- 🔈 AUDIO (HIDDEN) -->
+<!-- অডিও ফাইল -->
 <audio id="bg-music" loop hidden>
   <source src="images/music.mp3" type="audio/mpeg">
+  আপনার ব্রাউজার অডিও সাপোর্ট করে না।
 </audio>
 
-<!-- ⚙️ SCRIPT -->
+<!-- স্ক্রিপ্ট -->
 <script>
   const music = document.getElementById('bg-music');
-  const btn = document.getElementById('music-btn');
+  const btnIcon = document.querySelector('#music-btn i');
   let isPlaying = false;
 
   function toggleMusic() {
     if (isPlaying) {
       music.pause();
-      btn.innerHTML = '🔇'; // 🔇 when muted
+      btnIcon.classList.remove('fa-volume-up');
+      btnIcon.classList.add('fa-volume-mute');
     } else {
       music.play();
-      btn.innerHTML = '🔊'; // 🔊 when playing
+      btnIcon.classList.remove('fa-volume-mute');
+      btnIcon.classList.add('fa-volume-up');
     }
     isPlaying = !isPlaying;
   }
-</script>
+          </script>
     <div id="wrapper">
         <div class="flag__birthday">
             <img src="./images/1.png" alt="" width="350" class="flag__left">
