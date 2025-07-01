@@ -21,6 +21,40 @@
 </audio>
 <body>
 
+<!-- 🧠 STYLE -->
+<style>
+  #music-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 12px;
+    font-size: 20px;
+    border: none;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px #4CAF50;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    z-index: 9999;
+  }
+
+  #music-btn:hover {
+    background-color: #388E3C;
+    box-shadow: 0 0 14px #388E3C;
+  }
+</style>
+
+<!-- 🔊/🔇 ICON BUTTON -->
+<button id="music-btn" onclick="toggleMusic()">🔇</button>
+
+<!-- 🔈 AUDIO (HIDDEN) -->
+<audio id="bg-music" loop hidden>
+  <source src="images/music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ⚙️ SCRIPT -->
 <script>
   const music = document.getElementById('bg-music');
   const btn = document.getElementById('music-btn');
@@ -29,10 +63,10 @@
   function toggleMusic() {
     if (isPlaying) {
       music.pause();
-      btn.innerHTML = '🎵 Play Music';
+      btn.innerHTML = '🔇'; // 🔇 when muted
     } else {
       music.play();
-      btn.innerHTML = '⏸️ Pause Music';
+      btn.innerHTML = '🔊'; // 🔊 when playing
     }
     isPlaying = !isPlaying;
   }
