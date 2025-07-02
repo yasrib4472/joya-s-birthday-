@@ -18,47 +18,38 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- 🔗 Font Awesome -->
+<!-- Font Awesome লিঙ্ক (HEAD এর মধ্যে) -->
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
 
-<!-- 🎨 স্টাইল -->
-<style>
-  #music-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 12px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    z-index: 9999;
-  }
-
-  #music-btn i {
-    color: #A020F0; /* পার্পল আইকন */
-    font-size: 24px;
-    transition: color 0.3s ease;
-  }
-
-  #music-btn:hover i {
-    color: #8000c0; /* হোভার কালার */
-  }
-</style>
-
-<!-- 🔘 বাটন -->
-<button id="music-btn" onclick="toggleMusic()" aria-label="Toggle music">
-  <i class="fas fa-volume-mute"></i>
+<!-- বাটন -->
+<button id="music-btn" onclick="toggleMusic()" aria-label="Toggle music" style="
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 12px;
+  font-size: 20px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #800080;
+  cursor: pointer;
+  box-shadow: 0 0 10px #A020F0;
+  transition: all 0.3s ease;
+  z-index: 9999;
+">
+  <i class="fas fa-volume-mute"></i> <!-- ডিফল্ট আইকন -->
 </button>
 
-<!-- 🔈 অডিও -->
+<!-- অডিও ফাইল -->
 <audio id="bg-music" loop hidden>
   <source src="images/music.mp3" type="audio/mpeg">
+  আপনার ব্রাউজার অডিও সাপোর্ট করে না।
 </audio>
 
-<!-- ⚙️ স্ক্রিপ্ট -->
+<!-- স্ক্রিপ্ট -->
 <script>
   const music = document.getElementById('bg-music');
   const btnIcon = document.querySelector('#music-btn i');
@@ -67,14 +58,15 @@
   function toggleMusic() {
     if (isPlaying) {
       music.pause();
-      btnIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
+      btnIcon.classList.remove('fa-volume-up');
+      btnIcon.classList.add('fa-volume-mute');
     } else {
       music.play();
-      btnIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
+      btnIcon.classList.remove('fa-volume-mute');
+      btnIcon.classList.add('fa-volume-up');
     }
     isPlaying = !isPlaying;
   }
-</script>
           </script>
     <div id="wrapper">
         <div class="flag__birthday">
